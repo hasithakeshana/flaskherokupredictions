@@ -7,8 +7,8 @@ from fbprophet import Prophet
 app = Flask(__name__)
 
 @app.route('/')
-def hello_world():
-    return 'Hello, World!'
+def main():
+    return ''
 
 
 @app.route('/getBeansPrice', methods=['POST'])
