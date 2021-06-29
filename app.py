@@ -2,7 +2,7 @@ from flask import Flask,jsonify,request
 from flask_restful import Api,Resource
 import pickle
 import pandas as pd 
-
+from fbprophet import Prophet
 
 app = Flask(__name__)
 
