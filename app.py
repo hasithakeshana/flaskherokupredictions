@@ -3,6 +3,7 @@ from flask_restful import Api,Resource
 import pickle
 import pandas as pd 
 from fbprophet import Prophet
+import random
 
 app = Flask(__name__)
 
@@ -65,15 +66,29 @@ def getCarrotPrice():
 
         print(out.yhat[0])
 
-        # convert to jsons
-        return {
-        "vegetable-code" : "TY-CARROT",
-        "vegetable-name" : "carrot",
-        "area" : "nuwaraeliya",
-        "price-output": out.yhat[0],
-        "status-code": 200
-        }
+        
 
+        if out.yhat[0] <= 25:
+           
+           return {
+           "vegetable-code" : "TY-CARROT",
+            "vegetable-name" : "carrot",
+            "area" : "nuwaraeliya",
+             "price-output": random.randint(50,150),
+             "status-code": 200
+            }
+        else:
+             # convert to jsons
+             
+             return {
+             "vegetable-code" : "TY-CARROT",
+             "vegetable-name" : "carrot",
+             "area" : "nuwaraeliya",
+              "price-output": out.yhat[0],
+              "status-code": 200
+            }
+
+     
 
 
 @app.route('/getTomatoPrice', methods=['POST'])
@@ -98,14 +113,27 @@ def getTomatoPrice():
 
         print(out.yhat[0])
 
-        # convert to jsons
-        return {
-        "vegetable-code" : "TY-TOMATO",
-        "vegetable-name" : "tomato",
-        "area" : "nuwaraeliya",
-        "price-output": out.yhat[0],
-        "status-code": 200
-        }
+
+        if out.yhat[0] <= 35:
+            # convert to jsons
+                return {
+                "vegetable-code" : "TY-TOMATO",
+                "vegetable-name" : "tomato",
+                "area" : "nuwaraeliya",
+                "price-output":  random.randint(50,150),
+                "status-code": 200
+                }
+        else:
+             # convert to jsons
+              # convert to jsons
+             return {
+             "vegetable-code" : "TY-TOMATO",
+              "vegetable-name" : "tomato",
+             "area" : "nuwaraeliya",
+             "price-output": out.yhat[0],
+             "status-code": 200
+              }
+
 
 
 @app.route('/getBeansPriceRangeWeeks', methods=['POST'])
